@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Minimal</title>
+    <style>
+        .hero-bg {
+            background-image: url(assets/images/png/minimal-herobg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="min-h-screen hero-bg "></section>
+
+    <section id="pin-section" class=" bg-black relative px-4">
+        <div class="relative">
+
+            <h2 id="scaling-text"
+                class="absolute left-1/2 -translate-x-1/2 text-[220px] text-[#e8e2da] font-bold bottom-0 ">
+                MinimalGoods
+            </h2>
+        </div>
+
+        <div class="border-b-2 border-[#e8e2da] flex  justify-between py-7">
+            <div class="flex gap-2">
+                <p class="text-[#e8e2da] text-base font-medium">ARTICLES</p>
+                <p class="text-[#e8e2da] text-base font-medium">SHOP</p>
+                <p class="text-[#e8e2da] text-base font-medium">SUBMIT</p>
+            </div>
+            <p class="text-[#e8e2da] text-base font-medium">(2021), All rights reserved</p>
+        </div>
+        <div class="pt-20">
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Pin the black section
+        ScrollTrigger.create({
+            trigger: "#pin-section",
+            start: "top top",
+            end: "+=14100",
+            pin: true,
+            pinSpacing: false,
+            markers: true,
+        });
+
+        // Scale down and move to top center
+        gsap.to("#scaling-text", {
+            // Adjust so it goes to the top
+            scrollTrigger: {
+                trigger: "#pin-section",
+                start: "center center",
+                end: "bottom top",
+                scrub: true,
+            },
+            transformOrigin: "center center",
+            ease: "none",
+            scale: 0.1,
+            y: "60%",
+            duration:3,
+        });
+    </script>
+</body>
+
+</html>
