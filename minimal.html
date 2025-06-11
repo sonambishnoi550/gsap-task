@@ -21,7 +21,7 @@
     <section id="pin-section" class=" bg-black relative px-4 pb-3 z-30">
         <div class="relative">
             <h2 id="scaling-text"
-                class="absolute left-1/2 -translate-x-1/2 xl::text-[220px] lg:text-[140px] md:text-[100px] text-5xl text-[#e8e2da] font-bold bottom-0 ">
+                class="absolute left-1/2 -translate-x-1/2 xl:text-[220px] lg:text-[140px] md:text-[100px] text-5xl text-[#e8e2da] font-bold bottom-0 ">
                 MinimalGoods
             </h2>
         </div>
@@ -55,38 +55,33 @@
 </section>
 <section class="bg-[#e8e2da] py-[140px]">
     <div class="max-w-[1180px] mx-auto flex flex-wrap gap-5 items-center justify-center">
-        <p class="text-black text-[58px]  border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Travel</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Home</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Office</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Kitchen</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Fashion</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Furniture</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Books</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Lighting</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Tech</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Decor</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">Bath & Bed</p>
-        <p class="text-black text-[58px] border border-[#2e2a27]/50 px-5 py-1 leading-[90%] rounded-full">More</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl  border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Travel</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Home</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Office</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Kitchen</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Fashion</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Furniture</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Books</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Lighting</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Tech</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Decor</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Bath & Bed</p>
+        <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">More</p>
     </div>
 </section>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-
     <script>
         gsap.registerPlugin(ScrollTrigger);
-
         // Pin the black section
         ScrollTrigger.create({
             trigger: "#pin-section",
             start: "top top",
-            end: "+=14100",
+            end: "+=10400",
             pin: true,
             pinSpacing: false,
             markers: true,
-        });
+        }); 
 
         // Scale down and move to top center
         gsap.to("#scaling-text", {
@@ -100,7 +95,7 @@
             transformOrigin: "center center",
             ease: "none",
             scale: 0.1,
-            y: "63%",
+            y: "80%",
             duration: 3,
         });
         const tl = gsap.timeline({
