@@ -53,8 +53,8 @@
     <img id="growing-image" src="assets/images/png/minimal-garden.jpg" alt="garden"
         class="md:size-[504px] size-[131px] mx-auto rounded-[50%] object-cover" />
 </section>
-<section class="bg-[#e8e2da] min-h-screen">
-<section id="category-section" class="bg-[#e8e2da] py-[140px] h-[600px]">
+
+<section id="category-section" class="bg-[#e8e2da] py-[140px] !h-[400px]">
     <div id="category-tags" class="max-w-[1180px] mx-auto flex flex-wrap gap-5 items-center justify-center">
         <p class="text-black lg:text-[58px] md:text-4xl text-2xl  border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Travel</p>
         <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">Home</p>
@@ -70,11 +70,15 @@
         <p class="text-black lg:text-[58px] md:text-4xl text-2xl border border-[#2e2a27]/50 px-5 py-2 leading-[90%] rounded-full">More</p>
     </div>
 </section>
-
-<div class="flex items-end justify-start">
-<p class="text-[160px] text-black font-bold">Furniture</p>
-</div>
+<section id="scroll-section" class="bg-[#e8e2da] h-[240vh]">
+    <div class="h-screen flex items-end justify-start pl-10">
+        <div id="changing-text" class="text-[160px] font-bold transition-colors duration-500 text-black">
+            Furniture
+        </div>
+    </div>
 </section>
+
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script>
@@ -83,7 +87,7 @@
         ScrollTrigger.create({
             trigger: "#pin-section",
             start: "top top",
-            end: "+=10400",
+            end: "+=1400",
             pin: true,
             pinSpacing: false,
             markers: true,
@@ -137,7 +141,7 @@
                     trigger: "#category-section",
                     start: "top top",
                     end: "+=500", // kitna scroll karna chaahte ho uske according adjust karo
-                    pin: true,
+                  
                     scrub: true,
                 });
 
@@ -152,8 +156,47 @@
                         scrub: true,
                     },
                 });
+                
+                     
+            
+         
 
-    </script>
+        const textList = ["Furniture", "Decor", "Office", "Tech"];
+            const textEl = document.getElementById("changing-text");
+            const scrollLength = 150;
+
+            ScrollTrigger.create({
+                trigger: "#scroll-section",
+                start: "center top",
+                end: "bottom top",
+     
+                scrub: true,
+            });
+
+            textList.forEach((text, i) => {
+                ScrollTrigger.create({
+                    trigger: "#scroll-section",
+                    start: `${i * scrollLength}vh`,
+                    end: `${(i + 1) * scrollLength}vh`,
+                    scrub: true,
+                    onUpdate: (self) => {
+                        const localProgress = self.progress;
+
+                        if (localProgress >= 0.3 && localProgress <= 1) {
+                            textEl.textContent = text;
+
+                            if (localProgress > 0.5) {
+                                textEl.classList.remove("text-black");
+                                textEl.classList.add("text-white");
+                            } else {
+                                textEl.classList.remove("text-white");
+                                textEl.classList.add("text-black");
+                            }
+                        }
+                    }
+                });
+            });
+ </script>
 </body>
 
 </html>
