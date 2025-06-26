@@ -15,13 +15,13 @@
 
 <body>
     <section class="min-h-screen hero-bg bg-cover bg-no-repeat bg-center"></section>
-    <section id="pin-section" class="bg-black relative px-4 pb-3 z-30">
+    <section id="pin-section" class=" nav-bg relative  px-4 pb-3 z-50">
         <div class="relative">
             <h2 id="scaling-text"
                 class="absolute left-1/2 -translate-x-1/2 xl:text-[210px] lg:text-[140px] md:text-[100px] text-5xl text-[#e8e2da] font-bold bottom-0">
                 MinimalGoods </h2>
         </div>
-        <div class="border-b-2 border-[#e8e2da] flex sticky top-0 h-full z-10 justify-between md:py-7 py-3">
+        <div class="border-b-2 border-[#e8e2da] flex sticky nav-text top-0 h-full z-10 justify-between md:py-7 py-3">
             <div class="flex gap-2">
                 <p class="text-[#e8e2da] md:text-base text-[4px] font-medium">ARTICLES</p>
                 <p class="text-[#e8e2da] md:text-base text-[4px] font-medium">SHOP</p>
@@ -81,13 +81,12 @@
              leading-[90%] rounded-full"> More</p>
         </div>
     </section>
-    <section id="scroll-section" class="bg-[#e8e2da] md:!min-h-screen xl:-mt-[400px]">
-        <div class="h-screen flex items-end justify-start lg:pl-10 px-3">
-            <div id="changing-text" class="md:text-[160px] text-[80px] font-bold transition-colors duration-500 text-black">
-                Furniture
-            </div>
-        </div>
-    </section>
+<div id="scrollSection" class="min-h-screen flex items-end bg-[#E8E2DA] !w-full">
+    <p id="changingText"
+        class="text-[#2A2A27] font-bold text-[80px] min-[576px]:text-[90px] sm:text-[100px] md:text-[160px] lg:text-[280px] xl:text-[350px] z-[1] leading-[120%]">
+        Furniture
+    </p>
+</div>
     <section class="min-h-screen relative z-[30] lg:px-10 px-3">
         <div class="flex justify-between">
             <img src="assets/images/png/image1.jpeg" alt="image1" class="xl:max-w-[334px] lg:max-w-[237px] md:max-w-[174px] max-w-[85px] w-full xl:h-[438px] lg:h-[311px] md:h-[229px] h-[111px]">
@@ -128,10 +127,25 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
+            const furnitureSection = document.getElementById("scrollSection");
+            const furnitureText = document.getElementById("changingText");
+            const navbar = document.querySelector(".nav-bg");
+            const navText = document.querySelectorAll(".nav-text");
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#scrollSection",
+                    start: "top top",
+                    end: "+=7200",
+                    scrub: true,
+                    pin: true,
+                    pinSpacing: false,
+                },
+            });
+        gsap.registerPlugin(ScrollTrigger);
         ScrollTrigger.create({
             trigger: "#pin-section",
             start: "top top",
-            end: "+=1400",
+            end: "+=5400",
             pin: true,
             pinSpacing: false,
             markers: true,
@@ -196,40 +210,66 @@
             },
         });
 
-        const textList = ["Furniture", "Decor", "Office", "Tech"];
-        const textEl = document.getElementById("changing-text");
-        const scrollLength = 150;
-
-        ScrollTrigger.create({
-            trigger: "#scroll-section",
-            start: "top top",
-            end: "+=7000",
-            scrub: true,
-            pin: true,
-            pinSpacing: false,
-        });
-
-        textList.forEach((text, i) => {
+       let currentState = { bg: "", color: "", text: "" };
+        function updateSection(bgColor, textColor, text) {
+            if (
+                currentState.bg === bgColor &&
+                currentState.color === textColor &&
+                currentState.text === text
+            ) {
+                return;
+            }
+            currentState = { bg: bgColor, color: textColor, text };
+            if (window.innerWidth > 768) {
+                gsap.to([scrollSection, navbar], {
+                    backgroundColor: bgColor,
+                    borderColor: textColor,
+                    duration: 1.2,
+                    overwrite: "auto",
+                });
+                gsap.to([changingText, navText], {
+                    color: textColor,
+                    duration: 1.2,
+                    overwrite: "auto",
+                });
+            }
+            changingText.textContent = text;
+        }
+        const transitions = [
+            {
+                trigger: "#section1",
+                from: { bg: "#e8e2da", color: "#2a2a27", text: "Furniture" },
+                to: { bg: "#2a2a27", color: "#e8e2da", text: "Furniture" },
+            },
+            {
+                trigger: "#section3",
+                from: { bg: "#2a2a27", color: "#e8e2da", text: "Decor" },
+                to: { bg: "#e8e2da", color: "#2a2a27", text: "Decor" },
+            },
+            {
+                trigger: "#section5",
+                from: { bg: "#e8e2da", color: "#2a2a27", text: "Office" },
+                to: { bg: "#2a2a27", color: "#e8e2da", text: "Office" },
+            },
+            {
+                trigger: "#section6",
+                from: { bg: "#2a2a27", color: "#e8e2da", text: "Tech" },
+                to: { bg: "#e8e2da", color: "#2a2a27", text: "Tech" },
+            },
+        ];
+        transitions.forEach(({ trigger, from, to }) => {
             ScrollTrigger.create({
-                trigger: "#scroll-section",
-                start: `${i * scrollLength}vh`,
-                end: `${(i + 1) * scrollLength}vh`,
-                scrub: true,
+                trigger,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
                 onUpdate: (self) => {
-                    const localProgress = self.progress;
-
-                    if (localProgress >= 0.3 && localProgress <= 1) {
-                        textEl.textContent = text;
-
-                        if (localProgress > 0.5) {
-                            textEl.classList.remove("text-black");
-                            textEl.classList.add("text-white");
-                        } else {
-                            textEl.classList.remove("text-white");
-                            textEl.classList.add("text-black");
-                        }
+                    if (self.progress >= 0.7) {
+                        updateSection(to.bg, to.color, to.text);
+                    } else {
+                        updateSection(from.bg, from.color, from.text);
                     }
-                }
+                },
             });
         });
     </script>
