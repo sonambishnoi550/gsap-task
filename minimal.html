@@ -13,7 +13,7 @@
     </style>
 </head>
 
-<body class="bg-black">
+<body >
     <section class="min-h-screen hero-bg bg-cover bg-no-repeat bg-center"></section>
     <section id="pin-section" class=" nav-bg border-b bg-black relative  px-4 pb-3 z-50">
         <div class="relative">
@@ -31,7 +31,7 @@
             <p class="text-[#e8e2da] md:text-base text-[4px] font-medium nav-text">(2021), All rights reserved</p>
         </div>
     </section>
-    <section id="stack-section" class="bg-black !py-20 max-md:h-[80vh] relative overflow-hidden">
+    <section id="stack-section" class="bg-black  !py-20 max-md:h-[80vh] relative overflow-hidden">
         <div class="z-[1] relative bg-black w-full pt-20">
             <p id="text1" class="text-[#e8e2da] text-center bg-black md:text-[173px] text-5xl leading-[90%] font-bold">
                 Discover</p>
@@ -195,9 +195,9 @@
             }
         });
 
-        tl.to("#text2", { y: "-100%", duration: 1 }, 0)
-            .to("#text3", { y: "-200%", duration: 1 }, 0.5)
-            .to("#text4", { y: "-300%", duration: 1 }, 1);
+        tl.to("#text2", { y: "-100%"}, 0)
+            .to("#text3", { y: "-200%" }, 0.5)
+            .to("#text4", { y: "-300%" }, 1);
 
         gsap.to("#growing-image", {
             scrollTrigger: {
@@ -212,7 +212,11 @@
             height: "100%",
             borderRadius: "0%",
             ease: "power2.out",
+            
+            
         });
+        
+        
         ScrollTrigger.create({
             trigger: "#category-section",
             start: "top top",
